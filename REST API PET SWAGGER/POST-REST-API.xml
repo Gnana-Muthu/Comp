@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="1f5d3853-d28e-4774-88d8-7dd7d5777f71" activeEnvironment="Default" name="PostRestApi" resourceRoot="" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="e9c77d9d-4a9e-4877-b026-cea29ff13cf0" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://petstore.swagger.io" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>https://petstore.swagger.io</con:endpoint></con:endpoints><con:resource name="Pet" path="/v2/pet" id="120a4627-0939-4e1b-ba45-ab2d6c2c321a"><con:settings/><con:parameters/><con:method name="Pet 1" id="ccbed075-0082-496d-a23e-a06f01db13b9" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:pet="https://petstore.swagger.io/v2/pet">pet:Response</con:element></con:representation><con:request name="Request 1" id="471c6906-99b1-41d0-8ad1-0beb0bc551a5" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://petstore.swagger.io</con:endpoint><con:request>{
+  "id": 0,
+  "category": {
+    "id": 0,
+    "name": "string"
+  },
+  "name": "Budgies",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 0,
+      "name": "string"
+    }
+  ],
+  "status": "available"
+}</con:request><con:originalUri>https://petstore.swagger.io/v2/pet</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:testSuite id="3a6b28d7-236e-433d-8ced-9492cc0215da" name="TestSuite 1"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="99163b19-ecc1-41b3-a312-3dbd7da2b624" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="REST Request" id="67793dc1-83b3-4dcf-a685-ba6405029509"><con:settings/><con:config service="https://petstore.swagger.io" methodName="Pet 1" resourcePath="/v2/pet" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Request" id="c78a120b-3953-4fbf-a8c5-ad287cad53af" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://petstore.swagger.io</con:endpoint><con:request>{
+  "id": 0,
+  "category": {
+    "id": 0,
+    "name": "${#TestSuite#name1}"
+  },
+  "name": "${#TestSuite#name2}",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 0,
+      "name": "string"
+    }
+  ],
+  "status": "available"
+}</con:request><con:originalUri>https://petstore.swagger.io/v2/pet</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script" id="bd4f087c-da6f-48c4-a52c-5dfe59e164bd"><con:settings/><con:config><script>import groovy.json.JsonSlurper
+testRunner.testCase.testSuite.setPropertyValue("name1","Gnana Muthu")
+testRunner.testCase.testSuite.setPropertyValue("name2","Silly Girl")
+def nametest=testRunner.testCase.testSuite.getPropertyValue("name 1")
+def jobtest=testRunner.testCase.testSuite.getPropertyValue("name 2")
+def tCase=testRunner.testCase.testSuite.testCases["TestCase 1"]
+def addDetails=tCase.testSteps["REST Request"]
+addDetails.run(testRunner, context)
+def responseJson = addDetails.testRequest.response.responseContent
+log.info(responseJson)
+def jsonSlurper = new JsonSlurper()
+def object = jsonSlurper.parseText(responseJson)
+def id=""+object.id
+log.info(id)</script></con:config></con:testStep><con:properties/></con:testCase><con:properties><con:property><con:name>name2</con:name><con:value>Silly Girl</con:value></con:property><con:property><con:name>name1</con:name><con:value>Gnana Muthu</con:value></con:property><con:property><con:name>id</con:name><con:value>100</con:value></con:property></con:properties></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
